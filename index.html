@@ -54,46 +54,51 @@
         /* 갤러리 */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
             gap: 20px;
-            padding: 80px 20px 20px; /* 상단 바를 피하기 위해 패딩 추가 */
+            padding: 80px 10px 20px; /* 상단 바를 피하기 위해 패딩 추가 */
             margin: 0 auto;
-            max-width: 1200px;
+            max-width: 100%; /* 화면에 꽉 차도록 설정 */
         }
 
         .thumbnail {
+            position: relative;
             text-align: center;
             background: white;
-            border-radius: 8px;
-            overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .thumbnail video {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding-bottom: 100%; /* 높이와 너비를 같게 만들어서 정방형 */
+            overflow: hidden; /* 이미지가 정방형 영역을 넘지 않도록 설정 */
         }
 
-        .thumbnail video:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        .thumbnail img, .thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 비율에 맞게 채우기 */
+            transition: filter 0.3s ease;
         }
 
-        .thumbnail img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .thumbnail:hover img, .thumbnail:hover video {
+            filter: blur(5px); /* 블러 효과 */
         }
 
         .thumbnail p {
-            margin: 10px 0;
-            font-size: 16px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 수직, 수평 중앙 정렬 */
+            margin: 0;
+            font-size: 20px;
             font-weight: bold;
-            color: #333;
+            color: white;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            opacity: 0; /* 기본적으로 보이지 않음 */
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail:hover p {
+            opacity: 1; /* hover 시 텍스트 표시 */
         }
 
         @media (max-width: 768px) {
@@ -104,7 +109,12 @@
             .top-bar .tab {
                 font-size: 14px;
             }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr); /* 작은 화면에서는 2개씩 */
+            }
         }
+
     </style>
 </head>
 <body>
@@ -119,8 +129,7 @@
     <main class="gallery">
         <div class="thumbnail">
             <a href="healthcare.html">
-                <video src="book-3d.mp4" autoplay muted loop playsinline>
-                </video>    
+                <video src="book-3d.mp4" autoplay muted loop playsinline></video>
                 <p>Project 1</p>
             </a>
         </div>
@@ -136,7 +145,12 @@
                 <p>Project 3</p>
             </a>
         </div>
-        <!-- 더 많은 작품 추가 가능 -->
+        <div class="thumbnail">
+            <a href="project4.html">
+                <img src="project4-thumbnail.jpg" alt="Project 4 Thumbnail">
+                <p>Project 4</p>
+            </a>
+        </div>
     </main>
 </body>
 </html>
