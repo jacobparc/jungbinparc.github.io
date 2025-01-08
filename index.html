@@ -70,9 +70,13 @@
             width: 100%;
             padding-bottom: 100%; /* 높이와 너비를 같게 만들어서 정방형 */
             overflow: hidden; /* 이미지가 정방형 영역을 넘지 않도록 설정 */
+            box-sizing: border-box; /* padding이 크기 계산에 포함되도록 설정 */
         }
 
         .thumbnail img, .thumbnail video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover; /* 비율에 맞게 채우기 */
@@ -154,3 +158,4 @@
     </main>
 </body>
 </html>
+
