@@ -3,120 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Detail</title>
+    <title>Resizable Split View</title>
     <style>
         /* 기본 스타일 */
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
-            height: 100%;
-            display: flex;
-            overflow: hidden; /* 전체 페이지 스크롤 제거 */
             font-family: Arial, sans-serif;
-        }
-
-        /* 레이아웃 컨테이너 */
-        .container {
+            height: 100vh;
             display: flex;
-            width: 100%;
-            height: 100%;
+            overflow: hidden;
         }
 
         /* 왼쪽 섹션 */
-        .left-section {
-            flex: 1;
-            background-color: #333;
-            color: white;
-            overflow-y: auto; /* 세로 스크롤 */
+        .left {
+            background-color: #f4f4f4;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
             padding: 20px;
             box-sizing: border-box;
+            height: 100%;
         }
 
-        .left-section .content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .left-section video, .left-section img {
+        .left video, .left img {
             width: 100%;
-            height: auto;
-            object-fit: cover; /* 콘텐츠 크기 조정 */
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
         }
 
         /* 오른쪽 섹션 */
-        .right-section {
-            flex: 1;
-            background-color: #f4f4f4;
-            overflow-y: auto; /* 세로 스크롤 */
+        .right {
+            background-color: #eaeaea;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
             padding: 20px;
             box-sizing: border-box;
+            height: 100%;
         }
 
-        .right-section .content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
         }
 
-        .right-section h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: relative;
+            height: 100%;
         }
 
-        .right-section p {
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 15px;
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
         }
 
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column; /* 세로 배치 */
-            }
-
-            .left-section, .right-section {
-                width: 100%;
-                height: 50%;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 왼쪽 섹션 -->
-        <div class="left-section">
-            <div class="content">
-                <video src="book-3d.mp4" autoplay muted loop></video>
-                <video src="spread1.mp4" autoplay muted loop></video>
-                <img src="1.jpeg" alt="Image 1">
-                <img src="2.jpeg" alt="Image 2">
-                <img src="3.jpeg" alt="Image 3">
-                <img src="4.jpeg" alt="Image 4">
-                <img src="5.jpeg" alt="Image 5">
-                <img src="6.jpeg" alt="Image 6">
-                <img src="7.jpeg" alt="Image 7">
-                <img src="8.jpeg" alt="Image 8">
-                <img src="9.jpeg" alt="Image 9">
-                <img src="10.jpeg" alt="Image 10">
-                <img src="11.jpeg" alt="Image 11">
-                <img src="12.jpeg" alt="Image 12">
-            </div>
-        </div>
-
-        <!-- 오른쪽 섹션 -->
-        <div class="right-section">
-            <div class="content">
-                <h1>Project Title</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor libero in metus luctus, non facilisis libero aliquet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis lorem ut velit pretium, nec luctus ligula placerat.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec justo a augue ultrices fringilla id ac ipsum.</p>
-                <p>Curabitur ut turpis eu tortor cursus consectetur. Suspendisse potenti. Donec congue nisi a malesuada malesuada.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Fusce malesuada felis nec sem vehicula, non tristique eros sodales.</p>
-                <p>Suspendisse potenti. Vivamus at enim et eros eleifend aliquet in vitae arcu.</p>
-            </div>
-        </div>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <video src="book-3d.mp4" autoplay muted loop></video>
+        <video src="spread1.mp4" autoplay muted loop></video>
+        <img src="1.jpeg" alt="Image 1">
+        <img src="2.jpeg" alt="Image 2">
+        <img src="3.jpeg" alt="Image 3">
+        <img src="4.jpeg" alt="Image 4">
+        <img src="5.jpeg" alt="Image 5">
+        <img src="6.jpeg" alt="Image 6">
+        <img src="7.jpeg" alt="Image 7">
+        <img src="8.jpeg" alt="Image 8">
+        <img src="9.jpeg" alt="Image 9">
+        <img src="10.jpeg" alt="Image 10">
+        <img src="11.jpeg" alt="Image 11">
+        <img src="12.jpeg" alt="Image 12">
     </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p>왼쪽 섹션에 있는 여러 동영상과 이미지들을 여기에서 스크롤 할 수 있습니다.</p>
+        <p>오른쪽 섹션에는 텍스트가 들어갑니다. 텍스트도 세로로 스크롤할 수 있습니다.</p>
+        <p>이곳은 글의 예시로 긴 문장을 넣어 두었습니다. 여기에는 여러 줄의 내용이 계속 나올 수 있습니다.</p>
+        <p>다양한 정보를 추가할 수 있습니다. 이 공간은 자유롭게 활용 가능합니다.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth = left.parentNode.getBoundingClientRect().width;
+            const newLeftWidth = (e.clientX / containerWidth) * 100;
+
+            // 왼쪽과 오른쪽의 너비 조정
+            left.style.width = `${newLeftWidth}%`;
+            right.style.width = `${100 - newLeftWidth}%`;
+        }
+
+        // 마우스 클릭 종료
+        function onMouseUp() {
+            isDragging = false;
+            document.body.style.cursor = '';
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+    </script>
 </body>
 </html>
