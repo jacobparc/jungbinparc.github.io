@@ -10,9 +10,9 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: Arial, sans-serif;
             display: flex;
-            overflow: hidden; /* 전체 페이지에 스크롤 막기 */
+            overflow: hidden; /* 전체 페이지 스크롤 제거 */
+            font-family: Arial, sans-serif;
         }
 
         /* 레이아웃 컨테이너 */
@@ -22,30 +22,41 @@
             height: 100%;
         }
 
-        /* 왼쪽 섹션 - 이미지/비디오 */
+        /* 왼쪽 섹션 */
         .left-section {
-            flex: 1; /* 50% 공간 차지 */
+            flex: 1;
             background-color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-            overflow-y: auto; /* 독립적 세로 스크롤 */
-        }
-
-        .left-section img, .left-section video {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 0;
-        }
-
-        /* 오른쪽 섹션 - 텍스트 */
-        .right-section {
-            flex: 1; /* 50% 공간 차지 */
-            background-color: #f4f4f4;
+            color: white;
+            overflow-y: auto; /* 세로 스크롤 */
             padding: 20px;
             box-sizing: border-box;
-            overflow-y: auto; /* 독립적 세로 스크롤 */
+        }
+
+        .left-section .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .left-section video, .left-section img {
+            width: 100%;
+            height: auto;
+            object-fit: cover; /* 콘텐츠 크기 조정 */
+        }
+
+        /* 오른쪽 섹션 */
+        .right-section {
+            flex: 1;
+            background-color: #f4f4f4;
+            overflow-y: auto; /* 세로 스크롤 */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .right-section .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .right-section h1 {
@@ -59,7 +70,7 @@
             margin-bottom: 15px;
         }
 
-        /* 반응형 */
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column; /* 세로 배치 */
@@ -67,27 +78,44 @@
 
             .left-section, .right-section {
                 width: 100%;
-                height: 50%; /* 세로 배치 시 각각 반 높이 */
+                height: 50%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 왼쪽 미디어 섹션 -->
+        <!-- 왼쪽 섹션 -->
         <div class="left-section">
-            <!-- 비디오를 사용할 경우 -->
-            <video src="book-3d.mp4" autoplay muted loop></video>
-            <video src="spread1.mp4" autoplay muted loop></video>
+            <div class="content">
+                <video src="book-3d.mp4" autoplay muted loop></video>
+                <video src="spread1.mp4" autoplay muted loop></video>
+                <img src="6.png" alt="Image 1">
+                <img src="16.png" alt="Image 2">
+                <img src="34.png" alt="Image 3">
+                <img src="54.png" alt="Image 4">
+                <img src="96.png" alt="Image 5">
+                <img src="108.png" alt="Image 6">
+                <img src="114.png" alt="Image 7">
+                <img src="126.png" alt="Image 8">
+                <img src="132.png" alt="Image 9">
+                <img src="148.png" alt="Image 10">
+                <img src="174.png" alt="Image 11">
+                <img src="182.png" alt="Image 12">
+            </div>
         </div>
 
-        <!-- 오른쪽 텍스트 섹션 -->
+        <!-- 오른쪽 섹션 -->
         <div class="right-section">
-            <h1>Project Title</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor libero in metus luctus, non facilisis libero aliquet.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis lorem ut velit pretium, nec luctus ligula placerat.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec justo a augue ultrices fringilla id ac ipsum.</p>
-            <p>Curabitur ut turpis eu tortor cursus consectetur. Suspendisse potenti. Donec congue nisi a malesuada malesuada.</p>
+            <div class="content">
+                <h1>Project Title</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor libero in metus luctus, non facilisis libero aliquet.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis lorem ut velit pretium, nec luctus ligula placerat.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec justo a augue ultrices fringilla id ac ipsum.</p>
+                <p>Curabitur ut turpis eu tortor cursus consectetur. Suspendisse potenti. Donec congue nisi a malesuada malesuada.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Fusce malesuada felis nec sem vehicula, non tristique eros sodales.</p>
+                <p>Suspendisse potenti. Vivamus at enim et eros eleifend aliquet in vitae arcu.</p>
+            </div>
         </div>
     </div>
 </body>
