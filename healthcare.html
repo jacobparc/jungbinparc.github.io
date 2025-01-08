@@ -24,25 +24,24 @@
 
         /* 왼쪽 섹션 - 이미지/비디오 */
         .left-section {
-            width: 50%;
+            flex: 1; /* 50% 공간 차지 */
             background-color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 0;
             overflow-y: auto; /* 독립적 세로 스크롤 */
         }
 
         .left-section img, .left-section video {
             max-width: 100%;
             max-height: 100%;
-            border-radius: 8px;
+            border-radius: 0;
         }
 
         /* 오른쪽 섹션 - 텍스트 */
         .right-section {
-            width: 50%;
+            flex: 1; /* 50% 공간 차지 */
             background-color: #f4f4f4;
             padding: 20px;
             box-sizing: border-box;
