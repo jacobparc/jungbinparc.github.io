@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail</title>
+    <style>
+        /* 기본 스타일 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            display: flex;
+            overflow: hidden; /* 전체 페이지에 스크롤 막기 */
+        }
+
+        /* 레이아웃 컨테이너 */
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 왼쪽 섹션 - 이미지/비디오 */
+        .left-section {
+            width: 50%;
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto; /* 독립적 세로 스크롤 */
+        }
+
+        .left-section img, .left-section video {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 - 텍스트 */
+        .right-section {
+            width: 50%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto; /* 독립적 세로 스크롤 */
+        }
+
+        .right-section h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .right-section p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* 세로 배치 */
+            }
+
+            .left-section, .right-section {
+                width: 100%;
+                height: 50%; /* 세로 배치 시 각각 반 높이 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 왼쪽 미디어 섹션 -->
+        <div class="left-section">
+            <!-- 이미지를 사용할 경우 -->
+            <img src="project-image.jpg" alt="Project Image">
+            <!-- 비디오를 사용할 경우 -->
+            <!-- <video src="project-video.mp4" autoplay muted loop></video> -->
+        </div>
+
+        <!-- 오른쪽 텍스트 섹션 -->
+        <div class="right-section">
+            <h1>Project Title</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor libero in metus luctus, non facilisis libero aliquet.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum venenatis lorem ut velit pretium, nec luctus ligula placerat.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec justo a augue ultrices fringilla id ac ipsum.</p>
+            <p>Curabitur ut turpis eu tortor cursus consectetur. Suspendisse potenti. Donec congue nisi a malesuada malesuada.</p>
+        </div>
+    </div>
+</body>
+</html>
