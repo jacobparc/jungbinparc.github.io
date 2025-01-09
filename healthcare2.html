@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Healthcare To Change The World</title>
+    <style>
+        /* 폰트 설정 */
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('ABCFavoritCYR-Variable-Trial.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'KoreanFont';
+            src: url('Jibaek-120g-beta.otf') format('opentype');
+        }
+
+        /* 기본 스타일 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 왼쪽 섹션 */
+        .left {
+            background-color: #f4f4f4;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        .left video, .left img {
+            width: 100%;
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 */
+        .right {
+            background-color: #eaeaea;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        /* 텍스트에 폰트 적용 */
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* 영문 텍스트에 영문 폰트 적용 */
+        .right p:lang(en) {
+            font-family: 'EnglishFont', Arial, sans-serif;
+        }
+
+        /* 한글 텍스트에 한글 폰트 적용 */
+        .right p:lang(ko) {
+            font-family: 'KoreanFont', sans-serif;
+        }
+
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <video src="motionposter.mp4" autoplay muted loop></video>
+        <img src="posterstill.PNG" alt="Image 1">
+    </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p lang="ko">«의료를 멈춰 세상을 바꾸자»<br>
+        포스터, A1<br>
+        2024년 대한민국의 의료 파업은 정부와 의료계 간의 갈등이 다시금 수면 위로 떠오른 사건이었다. 정부는 필수의료와 지역 의료 서비스 부족 문제를 해결하기 위해 의과대학 정원 확대를 발표했으나, 의료계는 이에 반발하며 집단행동에 나섰다. “의료를 멈춰 세상을 바꾸자”와 같은 선동적인 구호와 일부 의사들의 “정부는 의사를 이길 수 없다”는 발언은 사회적 논란을 불러일으켰으며, 결국 정부는 행정적 처벌 조치를 철회했다. 국민의 생명과 안전이라는 최우선 가치가 정책적 이해관계와 집단의 이익 앞에서 희생된 현실은 우리에게 깊은 질문을 던진다. 이 사건이 의료 체계와 사회에 남긴 영향을 성찰하며, 한 사회의 구성원이자 디자이너로서 이를 탐구한 결과물을 포스터와 한 권의 책으로 엮었다.</p><br>
+        <p lang="en">«Stop Healthcare To Change The World»<br>
+        Poster, A1<br>
+        In 2024, a medical strike in South Korea brought the conflict between the government and the medical profession to the forefront. The government announced an increase in medical school enrollment to address the shortage of essential and rural healthcare services, but the medical community reacted by taking collective action. Inflammatory slogans such as “Stop Medicine, Change the World” and statements by some doctors that “the government cannot defeat doctors” sparked social controversy, and the government eventually withdrew the administrative penalties. The fact that the overriding value of people's lives and safety was sacrificed in favor of policy interests and group interests raises deep questions. Reflecting on the impact of this incident on the healthcare system and society, I explored it as a member of society and a designer, and compiled the results into a poster and a book.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth 
