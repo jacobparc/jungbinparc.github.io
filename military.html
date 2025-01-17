@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROFAF Incident and Accident Archive</title>
+    <style>
+        /* 폰트 설정 */
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('ABCFavoritCYR-Variable-Trial.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'KoreanFont';
+            src: url('Jibaek-120g-beta.otf') format('opentype');
+        }
+
+        /* 기본 스타일 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 왼쪽 섹션 */
+        .left {
+            background-color: #f4f4f4;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        .left video, .left img {
+            width: 100%;
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 */
+        .right {
+            background-color: #eaeaea;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        /* 텍스트에 폰트 적용 */
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* 영문 텍스트에 영문 폰트 적용 */
+        .right p:lang(en) {
+            font-family: 'EnglishFont', Arial, sans-serif;
+        }
+
+        /* 한글 텍스트에 한글 폰트 적용 */
+        .right p:lang(ko) {
+            font-family: 'KoreanFont', sans-serif;
+        }
+
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <video src="thumbnail.mp4" autoplay muted loop></video>
+        <img src="dearresidents.jpg" alt="Image 1">
+    </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p lang="ko">『대한민국 국군 사건·사고 아카이브』<br>
+        책, 115×239mm, 96쪽, 중철, 2024<br>
+        『대한민국 국군 사건·사고 아카이브』는 대한민국 국군 내에서 발생한 사건과 사고, 그리고 그로 인해 드러난 부조리한 현실을 조명한다. 군대라는 폐쇄적인 환경 속에서 은폐되고 왜곡되어 온 문제들을 기록하고, 이를 통해 군대의 구조적 문제에 대한 인식을 높이는 데 그 목적이 있다. 단순한 사건 사고의 아카이브 이상의 의미를 지니며, 군대 내에서 발생하는 폭력과 인권 침해, 그리고 그에 대한 무관심을 고발한다. 폭력과 부조리, 억압 속에서 묵살되어 온 피해자들의 이야기를 통해 우리 사회가 군대라는 공간에서 벌어지는 억압과 부조리를 마주하고, 더 나아가 그 해결을 모색하는 계기가 되기를 바란다.</p><br>
+        <p lang="en">«ROFAF Incident and Accident Archive»<br>
+        Book, 115×239mm, 96 page, Saddle stich binding, 2024<br>
+        «ROFAF Incident and Accident Archive» sheds light on incidents and accidents within the ROK Armed Forces and the absurdities they reveal. It aims to document issues that have been concealed and distorted in the closed environment of the military and to raise awareness of structural problems in the military. More than just an archive of incidents, it exposes violence, human rights violations, and indifference to them within the military. We hope that the stories of victims of violence, injustice, and oppression that have been ignored will inspire our society to confront the oppression and injustice that occurs in the space of the military and to seek solutions.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth 
