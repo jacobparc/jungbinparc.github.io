@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collected Struggles</title>
+    <style>
+        /* 폰트 설정 */
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('ABCFavoritCYR-Variable-Trial.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'KoreanFont';
+            src: url('Jibaek-120g-beta.otf') format('opentype');
+        }
+
+        /* 기본 스타일 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 왼쪽 섹션 */
+        .left {
+            background-color: #f4f4f4;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        .left video, .left img {
+            width: 100%;
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 */
+        .right {
+            background-color: #eaeaea;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        /* 텍스트에 폰트 적용 */
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* 영문 텍스트에 영문 폰트 적용 */
+        .right p:lang(en) {
+            font-family: 'EnglishFont', Arial, sans-serif;
+        }
+
+        /* 한글 텍스트에 한글 폰트 적용 */
+        .right p:lang(ko) {
+            font-family: 'KoreanFont', sans-serif;
+        }
+
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <img src="collect.jpg" alt="Image 1">
+        <img src="collect2.jpg" alt="Image 1">
+    </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p lang="ko">전시 «채집된 몸부림»<br>
+        포스터, A1, 레터링, 2024<br>
+        날개는 거미줄에 걸려도 몸부림을 멈추지 않는다. 날개는 마침내 다시 도약해 날아가고, 거미줄은 잠시나마 치열하고 화려한 움직임을 볼 수 있는 창구가 된다. «채집된 몸부림»에서는 거미줄을 펼쳐 26명의 몸부림을 잠시 잡아두었다. 이상의 글이 돋아낸 새로운 날개들을 감상하자. 우리는 채집된 26개의 몸부림이다.<br>
+        포스터 레터링·타이포그라피 / 박정빈<br>
+        포스터 그래픽 / 윤채원, 하수민</p><br>
+        <p lang="en">Exhibition «Collected Struggles»<br>
+        Poster, A1, Lettering, 2024<br>
+        The wing doesn't stop struggling when it gets caught in the web. The wings finally take off again and fly away, and the spider's web becomes a window into the fierce, colorful movement, if only for a moment. In «Collected Struggles», the spider's web is spun to capture 26 strugglers for a moment. Let's admire the new wings that have sprouted. We are the twenty-six collected struggles.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth 
