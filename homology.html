@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homology</title>
+    <style>
+        /* 폰트 설정 */
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('ABCFavoritCYR-Variable-Trial.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'KoreanFont';
+            src: url('Jibaek-120g-beta.otf') format('opentype');
+        }
+
+        /* 기본 스타일 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 왼쪽 섹션 */
+        .left {
+            background-color: #f4f4f4;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        .left video, .left img {
+            width: 100%;
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 */
+        .right {
+            background-color: #eaeaea;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        /* 텍스트에 폰트 적용 */
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* 영문 텍스트에 영문 폰트 적용 */
+        .right p:lang(en) {
+            font-family: 'EnglishFont', Arial, sans-serif;
+        }
+
+        /* 한글 텍스트에 한글 폰트 적용 */
+        .right p:lang(ko) {
+            font-family: 'KoreanFont', sans-serif;
+        }
+
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <img src="homology.jpg" alt="Image 1">
+        <img src="homology2.jpg" alt="Image 1">
+        <img src="homology3.jpg" alt="Image 1">
+        <img src="homology4.jpg" alt="Image 1">
+        <img src="homology5.jpg" alt="Image 1">
+    </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p lang="ko">홍익대학교 시각디자인과 사진예술소모임 HIPS 새끼전 «상동성» 타이틀 레터링<br>
+        레터링, 2024<br>
+        각자의 세계에서 사진 매체에 대한 개인적 토대를 형성한 힙스의 신입부원들은 사진에 대한 열망이라는 층위에서, 상이한 두 차원에서 나타나는 동일 구조, 곧 상동성을 형성한다. 이번 새끼전에서 작업자들은 각자에 내재된 이러한 상동의 흔적을 발견하고, 자신의 뿌리를 더듬어 전시장에 단단히 내리박는다. 사진을 통해 관찰된 대상을 일정한 형식으로 재현하는 과정은, 마치 진화의 기록처럼 특정 순간을 보존하고 그 의미를 간직하게 한다. 작업자들은 사진을 매개체로 삼아 대상을 이해하고, 그 변화와 발전을 탐구하며, 이를 통해 과거와 현재를 연결하고 작업의 뿌리를 시각적으로 재구성한다.<br>
+        아트디렉팅 / 박예진, 전시은, 추예윤<br>
+        포스터 디자인 / 박예진<br>
+        리플렛 디자인 / 전시은<br>
+        포스터 레터링 / 박정빈<br>
+        전경 사진 / 박예진</p><br>
+        <p lang="en">Title lettering for HIPS Baby Exhibition «Homology», a photography club for visual communication design majors at Hongik University<br>
+        Lettering, 2024<br>
+        Having formed a personal foundation for the medium of photography in their respective worlds, the new members of HIPS form a homology, the same structure that manifests itself in two different dimensions, at the level of the desire for photography. In this baby exhibition, the artists discover traces of this homology inherent in each of them, groping for their roots and planting them firmly in the exhibition space. The process of reproducing the observed object in a certain format through photography, like a record of evolution, preserves a specific moment and retains its meaning. The artists use photography as a medium to understand the object, explore its changes and development, and in doing so, connect the past and present and visually reconstruct the roots of their work.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth 
