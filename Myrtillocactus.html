@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Myrtillocactus</title>
+    <style>
+        /* 폰트 설정 */
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('ABCFavoritCYR-Variable-Trial.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'KoreanFont';
+            src: url('Jibaek-120g-beta.otf') format('opentype');
+        }
+
+        /* 기본 스타일 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 왼쪽 섹션 */
+        .left {
+            background-color: #f4f4f4;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        .left video, .left img {
+            width: 100%;
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 */
+        .right {
+            background-color: #eaeaea;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        /* 텍스트에 폰트 적용 */
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* 영문 텍스트에 영문 폰트 적용 */
+        .right p:lang(en) {
+            font-family: 'EnglishFont', Arial, sans-serif;
+        }
+
+        /* 한글 텍스트에 한글 폰트 적용 */
+        .right p:lang(ko) {
+            font-family: 'KoreanFont', sans-serif;
+        }
+
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <img src="cactus2.png" alt="Image 1">
+        <img src="cactus1.png" alt="Image 1">
+        <img src="cactus3.png" alt="Image 1">
+    </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p lang="ko">«용신목»<br>
+        레터링, 2024<br>
+        용신목은 성숙한 식물에서 촛대 모양의 가지를 가지며 높이 4-5m까지 자라는 큰 관목형 선인장이다.</p><br>
+        <p lang="en">«Myrtillocactus»<br>
+        Lettering, 2024<br>
+        Myrtillocactus is a large shrubby cactus that has candelabra-like branches in mature plants and grows up to 4-5 meters tall.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth 
