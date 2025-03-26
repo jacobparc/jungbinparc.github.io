@@ -97,7 +97,7 @@
     <!-- 왼쪽 섹션 -->
     <div class="left">
         <video src="logo.mov" autoplay muted loop></video>
-        <video src="imoogi.mp4" autoplay loop></video>
+        <video id="imoogi" src="imoogi.mp4" autoplay controls playsinline></video>
         <video src="wow.mov" autoplay muted loop></video>
     </div>
 
@@ -132,23 +132,13 @@
         Typography / Parc Jungbin</p>
     </div>
 
-    <script>
-        const resizer = document.querySelector('.resizer');
-        const left = document.querySelector('.left');
-        const right = document.querySelector('.right');
-        let isDragging = false;
-
-        // 마우스 클릭 시작
-        resizer.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            document.body.style.cursor = 'ew-resize';
-            document.addEventListener('mousemove', onMouseMove);
-            document.addEventListener('mouseup', onMouseUp);
+   <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const video = document.getElementById("imoogi");
+            video.play().catch(error => {
+                console.log("자동 재생이 차단됨: ", error);
+            });
         });
-
-        // 마우스 움직임에 따른 비율 조정
-        function onMouseMove(e) {
-            if (!isDragging) return;
-
-            // 화면의 너비와 마우스 위치 계산
-            const containerWidth 
+    </script>
+</body>
+</html>
