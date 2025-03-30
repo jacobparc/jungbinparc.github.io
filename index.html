@@ -6,51 +6,68 @@
      <title>Jungbin Parc</title>
      <style>
          /* 기본 스타일 */
-         body {
-             margin: 0;
-             font-family: Arial, sans-serif;
-             background-color: #000;
-             color: #fff;
-         }
- 
-         /* 고정된 상단 바 */
-         .top-bar {
-             position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             background-color: rgba(51, 51, 51, 0.6);
-             color: white;
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             padding: 10px 20px;
-             box-sizing: border-box;
-             z-index: 1000;
-             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-             transition: background-color 0.3s ease;
-         }
- 
-         .top-bar .tab {
-             text-decoration: none;
-             color: white;
-             font-size: 16px;
-             font-weight: bold;
-             transition: color 0.3s ease;
-             margin: 0 10px;
-             white-space: nowrap;
-         }
- 
-         .top-bar .tab:hover {
-             color: #ffcc00;
-         }
- 
-         .top-bar .name {
-             font-size: 18px;
-             font-weight: bold;
-             text-align: center;
-             flex: 1;
-         }
+         /* 기본 스타일 */
+@font-face {
+    font-family: 'KoreanFont';
+    src: url('Heitz-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* 영문 기본 폰트 */
+@font-face {
+    font-family: 'EnglishFont';
+    src: url('EuclidSquare-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    font-family: 'KoreanFont', 'EnglishFont';
+    background-color: #000;
+    color: #fff;
+}
+
+/* 고정된 상단 바 */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000; /* 불투명한 검정색 */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.top-bar .tab {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin: 0 10px;
+    white-space: nowrap;
+}
+
+.top-bar .tab:hover {
+    color: #e9352c;
+}
+
+.top-bar .name {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+}
+
  
          /* 갤러리 */
          .gallery {
@@ -220,6 +237,12 @@
              <a href="japan.html">
                  <img src="japan.jpg">
                  <p>Japanese Prints from the 1970s</p>
+             </a>
+         </div>
+         <div class="thumbnail">
+             <a href="mm.html">
+                 <img src="mm2.jpg">
+                 <p>Minimal Maximal</p>
              </a>
          </div>
          <div class="thumbnail">
