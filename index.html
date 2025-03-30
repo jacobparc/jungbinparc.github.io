@@ -9,8 +9,8 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #000;
+            color: #fff;
         }
 
         /* 고정된 상단 바 */
@@ -55,23 +55,23 @@
         /* 갤러리 */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개 */
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            padding: 80px 10px 20px; /* 상단 바를 피하기 위해 패딩 추가 */
+            padding: 80px 10px 20px;
             margin: 0 auto;
-            max-width: 100%; /* 화면에 꽉 차도록 설정 */
+            max-width: 100%;
         }
 
         .thumbnail {
             position: relative;
             text-align: center;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: #111;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             width: 100%;
-            padding-bottom: 100%; /* 높이와 너비를 같게 만들어서 정방형 */
-            overflow: hidden; /* 이미지가 정방형 영역을 넘지 않도록 설정 */
-            box-sizing: border-box; /* padding이 크기 계산에 포함되도록 설정 */
+            padding-bottom: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .thumbnail img, .thumbnail video {
@@ -80,30 +80,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 비율에 맞게 채우기 */
+            object-fit: cover;
             transition: filter 0.3s ease;
         }
 
         .thumbnail:hover img, .thumbnail:hover video {
-            filter: blur(5px); /* 블러 효과 */
+            filter: blur(5px);
         }
 
         .thumbnail p {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* 수직, 수평 중앙 정렬 */
+            transform: translate(-50%, -50%);
             margin: 0;
             font-size: 20px;
             font-weight: bold;
             color: white;
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-            opacity: 0; /* 기본적으로 보이지 않음 */
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .thumbnail:hover p {
-            opacity: 1; /* hover 시 텍스트 표시 */
+            opacity: 1;
         }
 
         @media (max-width: 768px) {
@@ -116,21 +116,18 @@
             }
 
             .gallery {
-                grid-template-columns: repeat(2, 1fr); /* 작은 화면에서는 2개씩 */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
-
     </style>
 </head>
 <body>
-    <!-- 고정된 상단 바 -->
     <header class="top-bar">
         <a href="#info" class="tab">Info</a>
         <div class="name">Jungbin Parc</div>
         <a href="mailto:jungbinparc@gmail.com" class="tab">Mail</a>
     </header>
 
-    <!-- 작품 썸네일 갤러리 -->
     <main class="gallery">
         <div class="thumbnail">
             <a href="artlab.html">
@@ -148,96 +145,6 @@
             <a href="dearresidents.html">
                 <video src="thumbnail.mp4" autoplay muted loop playsinline></video>
                 <p>Dear Residents</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="healthcare.html">
-                <video src="book-3d.mp4" autoplay muted loop playsinline></video>
-                <p>Stop Healthcare To Change The World</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="healthcare2.html">
-                <video src="motionposter.mp4" autoplay muted loop playsinline></video>
-                <p>Stop Healthcare To Change The World</p>
-            </a>
-        </div>
-         <div class="thumbnail">
-            <a href="caramel.html">
-                <img src="caramel2.jpg">
-                <p>Caramel</p>
-            </a>
-        </div>
-         <div class="thumbnail">
-            <a href="curtaincall.html">
-                <video src="curtaincall2.mp4" autoplay muted loop playsinline></video>
-                <p>Curtain Call</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="military.html">
-                <img src="m3.png">
-                <p>ROKAF Incident and Accident Archive</p>
-            </a>
-        </div>
-         <div class="thumbnail">
-            <a href="imoogi.html">
-                <video src="logo.mov" autoplay muted loop playsinline></video>
-                <p>Imoogi</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="name.html">
-                <video src="name.mp4" autoplay muted loop playsinline></video>
-                <p>With the name Lee Reum</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="homology.html">
-                <img src="homology.jpg">
-                <p>Homology</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="Myrtillocactus.html">
-                <img src="cactus2.png">
-                <p>Myrtillocactus</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="collect.html">
-                <img src="collect.jpg">
-                <p>Collected Struggles</p>
-            </a>
-        </div>
-         <div class="thumbnail">
-            <a href="neverchange.html">
-                <img src="neverchange.jpg">
-                <p>Some Things Never Change</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="japan.html">
-                <img src="japan.jpg">
-                <p>Japanese Prints from the 1970s</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="evolution.html">
-                <video src="evolution.MOV" autoplay muted loop playsinline></video>
-                <p>Evolution</p>
-            </a>
-        </div>
-          <div class="thumbnail">
-            <a href="azure.html">
-                <img src="azure.jpg">
-                <p>Azure Dragon</p>
-            </a>
-        </div>
-        <div class="thumbnail">
-            <a href="font.html">
-                <video src="video.mp4" autoplay muted loop playsinline></video>
-                <p>Geon Gon Gam Li</p>
             </a>
         </div>
     </main>
