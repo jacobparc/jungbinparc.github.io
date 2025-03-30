@@ -20,25 +20,27 @@
         html, body {
             margin: 0;
             height: 100%;
-            display: flex;
             overflow: hidden;
+            display: flex;
         }
 
-        body {
-            font-family: Arial, sans-serif;
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100%;
         }
 
         /* 왼쪽 섹션 */
         .left {
             background-color: #f4f4f4;
             width: 50%;
-            overflow-y: auto; /* 세로 스크롤 활성화 */
+            overflow-y: auto;
             padding: 20px;
             box-sizing: border-box;
-            height: 100%; /* 전체 높이를 차지 */
+            height: 100%;
         }
 
-        .left video, .left img {
+        .left img {
             width: 100%;
             margin-bottom: 20px;
             display: block;
@@ -49,12 +51,12 @@
         .right {
             background-color: #eaeaea;
             width: 50%;
-            overflow-y: auto; /* 세로 스크롤 활성화 */
+            overflow-y: auto;
             padding: 20px;
             word-wrap: break-word;
             overflow-wrap: break-word;
             box-sizing: border-box;
-            height: 100%; /* 전체 높이를 차지 */
+            height: 100%;
         }
 
         /* 텍스트에 폰트 적용 */
@@ -79,43 +81,41 @@
             width: 5px;
             cursor: ew-resize;
             background-color: #ccc;
-            position: absolute;
             height: 100%;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
         }
 
         /* 구분선 드래그 중 스타일 */
         .resizer:active {
             background-color: #aaa;
         }
-
     </style>
 </head>
 <body>
-    <!-- 왼쪽 섹션 -->
-    <div class="left">
-        <img src="mm2.jpg" alt="Image 1">
-    </div>
+    <div class="container">
+        <!-- 왼쪽 섹션 -->
+        <div class="left">
+            <img src="mm2.jpg" alt="Image 1">
+        </div>
 
-    <!-- 드래그 가능한 구분선 -->
-    <div class="resizer"></div>
+        <!-- 드래그 가능한 구분선 -->
+        <div class="resizer"></div>
 
-    <!-- 오른쪽 섹션 -->
-    <div class="right">
-        <p lang="ko">«Minimal Maximal»<br>
-        포스터, A2, 2024
-        </p><br>
-        <p lang="en">«Minimal Maximal»<br>
-        Poster, A2, 2024<br>
-        </p>
+        <!-- 오른쪽 섹션 -->
+        <div class="right">
+            <p lang="ko">«Minimal Maximal»<br>
+            포스터, A2, 2024</p><br>
+            <p lang="en">«Minimal Maximal»<br>
+            Poster, A2, 2024<br></p>
+        </div>
     </div>
 
     <script>
         const resizer = document.querySelector('.resizer');
         const left = document.querySelector('.left');
         const right = document.querySelector('.right');
+        const container = document.querySelector('.container');
+
         let isDragging = false;
 
         // 마우스 클릭 시작
@@ -126,9 +126,25 @@
             document.addEventListener('mouseup', onMouseUp);
         });
 
-        // 마우스 움직임에 따른 비율 조정
         function onMouseMove(e) {
             if (!isDragging) return;
 
-            // 화면의 너비와 마우스 위치 계산
-            const containerWidth 
+            const containerRect = container.getBoundingClientRect();
+            const newLeftWidth = e.clientX - containerRect.left;
+            const newRightWidth = containerRect.width - newLeftWidth - resizer.offsetWidth;
+
+            if (newLeftWidth > 100 && newRightWidth > 100) { // 최소 크기 제한
+                left.style.width = `${newLeftWidth}px`;
+                right.style.width = `${newRightWidth}px`;
+            }
+        }
+
+        function onMouseUp() {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+    </script>
+</body>
+</html>
