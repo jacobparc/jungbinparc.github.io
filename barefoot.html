@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Barefoot Right Now</title>
+    <style>
+        /* 폰트 설정 */
+        @font-face {
+            font-family: 'EnglishFont';
+            src: url('Union-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'KoreanFont';
+            src: url('Heitz-Regular.otf') format('opentype');
+        }
+
+        /* 기본 스타일 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            display: flex;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* 왼쪽 섹션 */
+        .left {
+            background-color: #131313;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+        }
+
+        .left video, .left img {
+            width: 100%;
+            margin-bottom: 20px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* 오른쪽 섹션 */
+        .right {
+            background-color: #131313;
+            width: 50%;
+            overflow-y: auto; /* 세로 스크롤 활성화 */
+            padding: 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            box-sizing: border-box;
+            height: 100%; /* 전체 높이를 차지 */
+            color: #ffffff;
+        }
+
+        /* 텍스트에 폰트 적용 */
+        .right p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+             word-break: keep-all;
+        }
+
+        /* 영문 텍스트에 영문 폰트 적용 */
+        .right p:lang(en) {
+            font-family: 'EnglishFont', Arial, sans-serif;
+        }
+
+        /* 한글 텍스트에 한글 폰트 적용 */
+        .right p:lang(ko) {
+            font-family: 'KoreanFont', sans-serif;
+        }
+
+        /* 드래그 가능한 구분선 */
+        .resizer {
+            width: 5px;
+            cursor: ew-resize;
+            background-color: #ccc;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 구분선 드래그 중 스타일 */
+        .resizer:active {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 왼쪽 섹션 -->
+    <div class="left">
+        <img src="barefoot1.jpg" alt="Image 1">
+        <img src="barefoot2.jpg" alt="Image 1">
+        <img src="barefoot3.jpg" alt="Image 1">
+    </div>
+
+    <!-- 드래그 가능한 구분선 -->
+    <div class="resizer"></div>
+
+    <!-- 오른쪽 섹션 -->
+    <div class="right">
+        <p lang="ko">공연 «나 지금 맨발이야»<br>
+        그래픽 디자인, 2026<br>
+        «나 지금 맨발이야»는 정보 과부하 시대 속 사람들의 무뎌진 감각을 들여다보는 공연이다. 쏟아지는 자극에 기민하게 반응하는 동안 점차 익숙해진 감각들을 되살려보고자 한다. 하루종일 신발 속에 갇혀있는 ‘발’의 감각을 통해 주변 환경을 새로이 돌아보고 그 경험을 무대 위로 불러와 사람들이 잊힌 감각을 되찾을 수 있는 이정표를 만든다.<br>
+        연출 / 이해솔<br>
+        기획 / 백지원, 오다영<br>
+        드라마터그 / 정주희<br>
+        무대 / 김예지, 임종민<br>
+        조명 / 오유빈<br>
+        음향 / 송유빈<br>
+        무대영상 / 남하경<br>
+        의상 / 조송은<br>
+        음악감독 / 정하영<br>
+        움직임감독 / 손승하<br>
+        그래픽 디자인 / 박정빈<br>
+        사진 / 한서윤<br>
+        홍보영상 / 엄세은, 이채림, 리 욱, 전호영, 조유정, 조아영, 김민서, 이수빈<br>
+        배우 / 고은하늘, 김찬우, 이도경, 하원철<br>
+        멘토링 / 김제민<br>
+        조명 어시스턴트 / 김은우, 이재환</p><br>
+        <p lang="en">Performance «I'm Barefoot Right Now»<br>
+        Graphic Design, 2026<br>
+        «I'm Barefoot Right Now» is a performance that explores the dulled senses of people living in an age of information overload. It seeks to revive the senses that have gradually become numb as we react swiftly to a constant barrage of stimuli. Through the sensations of the “feet”—which are confined inside shoes all day long—the performance offers a fresh perspective on our surroundings and brings that experience to the stage, creating a roadmap for people to rediscover their forgotten senses.</p>
+    </div>
+
+    <script>
+        const resizer = document.querySelector('.resizer');
+        const left = document.querySelector('.left');
+        const right = document.querySelector('.right');
+        let isDragging = false;
+
+        // 마우스 클릭 시작
+        resizer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+
+        // 마우스 움직임에 따른 비율 조정
+        function onMouseMove(e) {
+            if (!isDragging) return;
+
+            // 화면의 너비와 마우스 위치 계산
+            const containerWidth 
